@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/one-highflyer/advanced_bank_reconciliation/compare/v1.9.2...v1.9.3) (2026-07-21)
+
+
+### Bug Fixes
+
+* align payment entry bank account with transaction ([f0e4643](https://github.com/one-highflyer/advanced_bank_reconciliation/commit/f0e4643f6a1d5b35ca0dd1fe5901401b80bf3341))
+
 ## [1.9.2](https://github.com/one-highflyer/advanced_bank_reconciliation/compare/v1.9.1...v1.9.2) (2026-06-27)
 
 
