@@ -639,6 +639,8 @@ def create_payment_entry_bts(
 	pe.posting_date = posting_date
 	pe.paid_from = party_account if payment_type == "Receive" else bank_account
 	pe.paid_to = party_account if payment_type == "Pay" else bank_account
+	pe.bank_account = bank_transaction.bank_account
+	pe.set_bank_account_data()
 	pe.paid_from_account_currency = party_currency if payment_type == "Receive" else bank_currency
 	pe.paid_to_account_currency = party_currency if payment_type == "Pay" else bank_currency
 	pe.paid_amount = amount_in_party_currency if payment_type == "Receive" else amt_in_bank_acc_currency
@@ -2283,6 +2285,7 @@ def create_payment_entry_for_invoice(invoice_doc, bank_transaction, allocated_am
 		invoice_doc.doctype,
 		invoice_doc.name,
 		party_amount=signed_allocated_amount,
+		bank_account=bank_gl_account,
 	)
 
 	# Set the correct bank account based on payment type
@@ -2290,6 +2293,8 @@ def create_payment_entry_for_invoice(invoice_doc, bank_transaction, allocated_am
 		payment_entry.paid_to = bank_gl_account
 	else:  # Pay
 		payment_entry.paid_from = bank_gl_account
+	payment_entry.bank_account = bank_account_doc.name
+	payment_entry.set_bank_account_data()
 
 	# Collapse Payment Terms rows, strip deductions, and lock paid amounts
 	# to the caller's allocation. See helper for the full rationale.
